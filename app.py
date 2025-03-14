@@ -4,27 +4,17 @@ import datetime as dt
 import pandas as pd
 import math
 
+st.set_page_config(
+    page_title = "New-York taxi",
+    page_icon="🚕",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
 '''
-# TaxiFareModel front
+# New-York taxi
 '''
 
-# st.markdown('''
-# Remember that there are several ways to output content into your web page...
-
-# Either as with the title by just creating a string (or an f-string). Or as with this paragraph using the `st.` functions
-# ''')
-
-# '''
-# ## Here we would like to add some controllers in order to ask the user to select the parameters of the ride
-
-# 1. Let's ask for:
-# - date and time
-# - pickup longitude
-# - pickup latitude
-# - dropoff longitude
-# - dropoff latitude
-# - passenger count
-# '''
 '''
 ## Parameters
 '''
@@ -108,14 +98,8 @@ if dropoff_adress_text != None and pickup_adress_text != None and st.button('Sho
         dropoff_adress_df[dropoff_adress_df['display_name'] == dropoff_adress_dn ],
         pickup_adress_df[pickup_adress_df['display_name'] == pickup_adress_dn ]
     ])[['lon','lat']]
-    st.map(data=coordinates, latitude = avg_lat, longitude = avg_lon, zoom = 10, size = 500 )
-# '''
-# ## Once we have these, let's call our API in order to retrieve a prediction
-
-# See ? No need to load a `model.joblib` file in this app, we do not even need to know anything about Data Science in order to retrieve a prediction...
-
-# 🤔 How could we call our API ? Off course... The `requests` package 💡
-# '''
+    st.map(data=coordinates, latitude = avg_lat, longitude = avg_lon, zoom = 10, size = 500, )
+##################### Prediction ######################
 @st.cache_resource
 def predict(params):
     url = 'https://taxifare-326525614739.europe-west1.run.app/predict'
