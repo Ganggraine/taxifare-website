@@ -14,26 +14,26 @@ st.set_page_config(
 '''
 # New-York taxi
 '''
-
 '''
-## Parameters
+## Plan your itinerary
 '''
-'''
+l_st,r_st =st.columns(2)
+l_st.write('''
 ### When do you go ?
-'''
-pickup_date= st.date_input(
+''')
+pickup_date= l_st.date_input(
     "When are you go?",
     dt.datetime.now(dt.timezone(dt.timedelta(hours=-5)))
 )
-pickup_time= st.time_input(
+pickup_time= l_st.time_input(
     "At what time?",
     dt.datetime.now(dt.timezone(dt.timedelta(hours=-5))),
     step = dt.timedelta(minutes=5)
 )
 pickup_datetime = dt.datetime.combine(pickup_date, pickup_time)
 
-''' ### How many passengers ?'''
-passenger_count = st.number_input('Number', min_value= 1, max_value= 8,step = 1)
+r_st.write(''' ### How many passengers ?''')
+passenger_count = r_st.number_input('Number', min_value= 1, max_value= 8,step = 1)
 
 '''
 ### Your itinerary
